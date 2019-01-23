@@ -16,16 +16,18 @@ if [ -z "$OS" ]; then
 fi
 
 if [ "$OS" = "windows" ]; then
-    EXT=\.zip
+    EXT=.zip
+    ESCEXT=\.zip
 else
-    EXT=\.tar\.gz
+    EXT=.tar.gz
+    ESCEXT=\.tar\.gz
 fi
 
 echo Downloading and running $PACKAGE...
 # Don't go for the API since it hits the Appveyor GitHub API limit and fails
 RELEASES=$(curl --silent --show-error https://github.com/ndmitchell/$PACKAGE/releases)
-URL=https://github.com/$(echo $RELEASES | grep -o '\"[^\"]*-x86_64-'$OS$EXT'\"' | sed s/\"//g | head -n1)
-VERSION=$(echo $URL | sed -n 's@.*-\(.*\)-x86_64-'$OS$EXT'@\1@p')
+URL=https://github.com/$(echo $RELEASES | grep -o '\"[^\"]*-x86_64-'$OS$ESCEXT'\"' | sed s/\"//g | head -n1)
+VERSION=$(echo $URL | sed -n 's@.*-\(.*\)-x86_64-'$OS$ESCEXT'@\1@p')
 TEMP=$(mktemp -d .$PACKAGE-XXXXX)
 
 cleanup(){
@@ -41,10 +43,11 @@ retry(){
     $@
 }
 
-retry curl --progress-bar --location -o$TEMP/$PACKAGE.tar.gz $URL
+retry curl --progress-bar --location -o$TEMP/$PACKAGE.$EXT $URL
+tar -xzf $TEMP/$PACKAGE.$EXT -C$TEMP
 if [ "$OS" = "windows" ]; then
     7z x -y $TEMP/$PACKAGE.zip -o$TEMP -r
 else
-    tar -xzf $TEMP/$PACKAGE.tar.gz -C$TEMP
+    tar -xzf $TEMP/$PACKAGE.$EXT -C$TEMP
 fi
 $TEMP/$PACKAGE-$VERSION/$PACKAGE $*
