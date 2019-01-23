@@ -43,11 +43,11 @@ retry(){
     $@
 }
 
-retry curl --progress-bar --location -o$TEMP/$PACKAGE.$EXT $URL
-tar -xzf $TEMP/$PACKAGE$EXT -C$TEMP
+retry curl --progress-bar --location -o$TEMP/$PACKAGE$EXT $URL
 if [ "$OS" = "windows" ]; then
-    7z x -y $TEMP/$PACKAGE.zip -o$TEMP -r
+    7z x -y $TEMP/$PACKAGE$EXT -o$TEMP -r
+    tar -xzf $TEMP/$PACKAGE$EXT -C$TEMP
 else
-    tar -xzf $TEMP/$PACKAGE.$EXT -C$TEMP
+    tar -xzf $TEMP/$PACKAGE$EXT -C$TEMP
 fi
 $TEMP/$PACKAGE-$VERSION/$PACKAGE $*
