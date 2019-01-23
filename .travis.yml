@@ -1,0 +1,10 @@
+sudo: required
+language: sh
+
+os:
+- osx
+- linux
+- windows
+
+script:
+- curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -s --version
