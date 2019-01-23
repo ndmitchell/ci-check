@@ -7,4 +7,5 @@ os:
 - windows
 
 script:
-- curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -s -- --version
+- sh travis.sh -- hlint --version
+# - curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -s -- --version
