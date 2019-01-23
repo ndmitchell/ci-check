@@ -1,7 +1,7 @@
 #!/bin/sh
 # This script is invoked from my Travis commands
 # It bootstraps to grab the a binary release and run it
-set -e # exit on errors
+set -ex # exit on errors
 
 PACKAGE=$1
 if [ -z "$PACKAGE" ]; then
@@ -15,11 +15,21 @@ if [ -z "$OS" ]; then
     OS=linux
 fi
 
+echo OS = $OS
+echo PACKAGE = $PACKAGE
+
 echo Downloading and running $PACKAGE...
 # Don't go for the API since it hits the Appveyor GitHub API limit and fails
 RELEASES=$(curl --silent --show-error https://github.com/ndmitchell/$PACKAGE/releases)
+
+echo RELEASES = $RELEASES
+
 URL=https://github.com/$(echo $RELEASES | grep -o '\"[^\"]*-x86_64-'$OS'\.tar\.gz\"' | sed s/\"//g | head -n1)
+echo URL = $URL
+
 VERSION=$(echo $URL | sed -n 's@.*-\(.*\)-x86_64-'$OS'\.tar\.gz@\1@p')
+
+
 TEMP=$(mktemp -d .$PACKAGE-XXXXX)
 
 cleanup(){
