@@ -252,6 +252,15 @@ do_centos_install() {
   fi
 }
 
+# Attempts to install on Windows, only tested on Travis CI scripts
+do_windows_install() {
+  info "Using Windows install.."
+  info ""
+  make_temp_dir
+  curl -o$STACK_TEMP_DIR/stack.zip -L http://www.stackage.org/stack/windows-x86_64
+  echo $PATH
+}
+
 # Attempts to install on macOS.
 # If 'brew' exists, installs using Homebrew.  Otherwise, installs
 # the generic bindist.
@@ -443,6 +452,9 @@ do_os() {
       ;;
     "FreeBSD")
       do_freebsd_install
+      ;;
+    "MSYS_NT-10.0")
+      do_windows_install
       ;;
     *)
       die "Sorry, this installer does not support your operating system: $(uname).
