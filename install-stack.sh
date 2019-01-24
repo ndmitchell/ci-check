@@ -259,6 +259,10 @@ do_windows_install() {
   make_temp_dir
   dl_to_file "http://www.stackage.org/stack/windows-x86_64" "$STACK_TEMP_DIR/stack.zip"
   7z x $STACK_TEMP_DIR/stack.zip stack.exe -o/bin
+  post_install_separator
+  info "Stack has been installed to: $DEST"
+  info ""
+  check_dest_on_path
 }
 
 # Attempts to install on macOS.
