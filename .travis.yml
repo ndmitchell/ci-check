@@ -9,5 +9,6 @@ os:
 script:
 - sh install-stack.sh
 - stack --version
+- echo $PATH
 - curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -s -- --version
 - curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -s -- --version
