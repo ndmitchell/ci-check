@@ -1,0 +1,19 @@
+# Azure Pipelines file, see https://aka.ms/yaml
+
+trigger:
+- master
+
+jobs:
+- job: Windows
+  pool: {vmImage: 'vs2017-win2016'}
+- job: Linux
+  pool: {vmImage: "Ubuntu 16.04"}
+- job: Mac
+  pool: {vmImage: "macOS-10.13"}
+
+steps:
+- script: |
+    sh install-stack.sh
+    stack --version
+    curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
+    curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -x -s -- --version
