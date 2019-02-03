@@ -7,7 +7,7 @@ os:
 - windows
 
 script:
-- sh install-stack.sh
+- sh -x install-stack.sh
 - stack --version
 - echo $PATH
 - curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -s -- --version
