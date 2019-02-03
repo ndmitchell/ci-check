@@ -457,9 +457,10 @@ do_os() {
     "FreeBSD")
       do_freebsd_install
       ;;
-    MSYS_NT-*)
+    MINGW64_NT|MSYS_NT-*)
       do_windows_install
       ;;
+    "MINGW64_NT"
     *)
       die "Sorry, this installer does not support your operating system: $(uname).
 See http://docs.haskellstack.org/en/stable/install_and_upgrade/"
