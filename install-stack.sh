@@ -457,7 +457,7 @@ do_os() {
     "FreeBSD")
       do_freebsd_install
       ;;
-    "MSYS_NT-10.0")
+    "MSYS_NT-*")
       do_windows_install
       ;;
     *)
