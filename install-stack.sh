@@ -23,7 +23,7 @@ STACK_VERSION="1.9.3"
 HOME_LOCAL_BIN="$HOME/.local/bin"
 DEFAULT_DEST="/usr/local/bin/stack"
 # Windows doesn't have a good place for DEST, but all CI systems (Appveyor, Travis, Azure) support /bin
-DEFAULT_DEST_WINDOWS="/bin"
+DEFAULT_DEST_WINDOWS="/bin/stack"
 DEST=""
 QUIET=""
 FORCE=""
@@ -260,7 +260,10 @@ do_windows_install() {
   info ""
   make_temp_dir
   dl_to_file "http://www.stackage.org/stack/windows-x86_64" "$STACK_TEMP_DIR/stack.zip"
-  if ! 7z x $STACK_TEMP_DIR/stack.zip stack.exe "-o$DEST"; then
+  if [ "$(basename $DEST)" != "stack" ]; then
+    die "Currently the destination must always end with 'stack' on Windows, got: $DEST"
+  fi
+  if ! 7z x $STACK_TEMP_DIR/stack.zip stack.exe "-o$(dirname $DEST)"; then
     die "Extract zip file installed, you probably don't have 7z installed"
   fi
   post_install_separator
