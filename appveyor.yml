@@ -3,6 +3,9 @@ image:
 - Visual Studio 2017
 - Ubuntu
 
+environment:
+  APPVEYOR_YML_DISABLE_PS_LINUX: true
+
 test_script:
 - sh install-stack.sh
 - stack --version
