@@ -7,6 +7,7 @@ os:
 - windows
 
 script:
+- cat travis.sh | sh -x -s -- hlint --version
 - sh -x install-stack.sh
 - stack --version
 - echo $PATH
