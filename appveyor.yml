@@ -1,4 +1,7 @@
 build: off
+image:
+- Visual Studio 2017
+- Ubuntu
 
 test_script:
 - sh install-stack.sh
