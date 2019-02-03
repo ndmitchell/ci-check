@@ -467,7 +467,7 @@ do_os() {
       do_freebsd_install
       ;;
     MINGW64_NT-*|MSYS_NT-*)
-      DEFAULT_DEST=DEFAULT_DEST_WINDOWS
+      DEFAULT_DEST="$DEFAULT_DEST_WINDOWS"
       set_default_dest
       do_windows_install
       ;;
