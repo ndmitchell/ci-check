@@ -260,7 +260,9 @@ do_windows_install() {
   info ""
   make_temp_dir
   dl_to_file "http://www.stackage.org/stack/windows-x86_64" "$STACK_TEMP_DIR/stack.zip"
-  7zz x $STACK_TEMP_DIR/stack.zip stack.exe "-o$DEST"
+  if ! 7z x $STACK_TEMP_DIR/stack.zip stack.exe "-o$DEST"; then
+    die "Extract zip file installed, you probably don't have 7z installed"
+  fi
   post_install_separator
   info "Stack has been installed to: $DEST"
   info ""
