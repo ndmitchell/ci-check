@@ -10,6 +10,7 @@ jobs:
   - script: |
       sh install-stack.sh
       stack --version
+      curl -sSL https://raw.github.com/ndmitchell/neil/master/misc/travis.sh | sh -x -s -- hlint --version
       curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
       curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -x -s -- --version
 - job: Linux
