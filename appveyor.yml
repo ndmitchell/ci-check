@@ -3,6 +3,7 @@ build: off
 test_script:
 - sh install-stack.sh
 - stack --version
+- curl -sSL https://raw.github.com/ndmitchell/neil/master/misc/travis.sh | sh -x -s -- hlint --version
 - curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
 - curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -x -s -- --version
 - ps: Invoke-Command ([Scriptblock]::Create((Invoke-WebRequest 'https://raw.githubusercontent.com/ndmitchell/hlint/master/misc/appveyor.ps1').Content)) -ArgumentList @('--version')
