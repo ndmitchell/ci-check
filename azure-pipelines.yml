@@ -19,5 +19,3 @@ steps:
     stack --version
     curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
     curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -x -s -- --version
-    stackk --version
-    stack --version
