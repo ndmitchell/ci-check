@@ -11,7 +11,7 @@ strategy:
 
 pool: {vmImage: '$(image)'}
 steps:
-- script: |
+- bash: |
     which 7z
     set -e
     sh install-stack.sh
