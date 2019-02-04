@@ -780,6 +780,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+exit 1
 check_stack_installed
 do_os
 check_home_local_bin_on_path
