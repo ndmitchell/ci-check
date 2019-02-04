@@ -11,8 +11,7 @@ strategy:
 
 pool: {vmImage: '$(image)'}
 steps:
-- script: |
-    echo $(image)
+- bash: |
     sh install-stack.sh
     stack --version
     curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
