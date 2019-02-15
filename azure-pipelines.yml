@@ -15,7 +15,7 @@ steps:
     set -e
     # on Windows, 7z is in the Chocolatey directory
     export PATH=$PATH:/c/ProgramData/Chocolatey/bin
-    sh install-stack.sh
+    curl -sSL https://get.haskellstack.org/ | sh
     stack --version
     curl -sSL https://raw.github.com/ndmitchell/hlint/master/misc/travis.sh | sh -x -s -- --version
     curl -sSL https://raw.github.com/ndmitchell/weeder/master/misc/travis.sh | sh -x -s -- --version
